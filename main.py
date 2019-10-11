@@ -1,31 +1,32 @@
-def detect_document(path):
-    """Detects document features in an image."""
-    from google.cloud import vision
-    import io
-    client = vision.ImageAnnotatorClient()
+from imutils.object_detection import non_max_suppression
+import numpy as np
+import argparse, time, cv2
+ 
+# construct the argument parser and parse the arguments
+ap = argparse.ArgumentParser()
+ap.add_argument("-i", "--image", type=str,
+	help="path to input image")
+ap.add_argument("-east", "--east", type=str,
+	help="path to input EAST text detector")
+ap.add_argument("-c", "--min-confidence", type=float, default=0.5,
+	help="minimum probability required to inspect a region")
+ap.add_argument("-w", "--width", type=int, default=320,
+	help="resized image width (should be multiple of 32)")
+ap.add_argument("-e", "--height", type=int, default=320,
+	help="resized image height (should be multiple of 32)")
+args = vars(ap.parse_args())
 
-    with io.open(path, 'rb') as image_file:
-        content = image_file.read()
-
-    image = vision.types.Image(content=content)
-
-    response = client.document_text_detection(image=image)
-
-    for page in response.full_text_annotation.pages:
-        for block in page.blocks:
-            print('\nBlock confidence: {}\n'.format(block.confidence))
-
-            for paragraph in block.paragraphs:
-                print('Paragraph confidence: {}'.format(
-                    paragraph.confidence))
-
-                for word in paragraph.words:
-                    word_text = ''.join([
-                        symbol.text for symbol in word.symbols
-                    ])
-                    print('Word text: {} (confidence: {})'.format(
-                        word_text, word.confidence))
-
-                    for symbol in word.symbols:
-                        print('\tSymbol: {} (confidence: {})'.format(
-                            symbol.text, symbol.confidence))
+# load the input image and grab the image dimensions
+image = cv2.imread(args["image"])
+orig = image.copy()
+(H, W) = image.shape[:2]
+ 
+# set the new width and height and then determine the ratio in change
+# for both the width and height
+(newW, newH) = (args["width"], args["height"])
+rW = W / float(newW)
+rH = H / float(newH)
+ 
+# resize the image and grab the new image dimensions
+image = cv2.resize(image, (newW, newH))
+(H, W) = image.shape[:2]
