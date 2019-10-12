@@ -5,7 +5,6 @@ from oauth2client.service_account import ServiceAccountCredentials
 """
 link to the form: https://forms.gle/n23sWnecnGvJ4V4K6
 save the image 
-
 """
 
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
@@ -19,12 +18,14 @@ image = Image.open('/home/shub/devel/personal/version-beta/images/blank_cert_tem
 draw = ImageDraw.Draw(image)
 
 #font declaration
-font = ImageFont.truetype('/home/shub/devel/personal/version-beta/certificate_gen_script/fonts/OpenSans-Bold.ttf', size=45)
+font = ImageFont.truetype('/home/shub/devel/personal/version-beta/certificate_gen_script/fonts/OpenSans-Bold.ttf', size=82) 
 
-for candidate in range(2, sheet.row_count):
-    candidate_name = sheet.row_values()
+for candidate_name in sheet.col_values(1):
+    (x,y) = 106,327
+    color = 'rgb(0,0,0)'
+    draw.text((x,y), candidate_name, fill=color, font=font)
 
-    
+"""
 
 
 for date in sheet.col_values(1):
@@ -46,5 +47,7 @@ for certification_for in sheet.col_values(6):
     (x,y) = 355,236
     color = 'rgb(0,0,0)'
     draw.text((x,y), certification_for, fill=color, font=font)
+"""
 
 image.save('certificate' + str(sheet.row_count) + '.png')
+

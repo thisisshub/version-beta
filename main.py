@@ -8,9 +8,9 @@ from cv2 import cv2
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--image", type=str,
-	help="/home/shub/devel/personal/version-beta/images")
+	help="path to input image")
 ap.add_argument("-east", "--east", type=str,
-	help="/home/shub/devel/personal/version-beta/frozen_east_text_detection.pb")
+	help="path to input EAST text detector")
 ap.add_argument("-c", "--min-confidence", type=float, default=0.5,
 	help="minimum probability required to inspect a region")
 ap.add_argument("-w", "--width", type=int, default=320,
@@ -128,3 +128,4 @@ for (startX, startY, endX, endY) in boxes:
 # show the output image
 cv2.imshow("Text Detection", orig)
 cv2.waitKey(0)
+
