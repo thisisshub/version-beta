@@ -9,9 +9,9 @@ import pandas as pd
 # The input file contains names as a line seperated list
 # Make sure this output directory already exists or else candidateficates won't actually be generated
 
-input_txt_file = '/home/shub/devel/personal/version-beta/candidateficate_gen_script/requirements.txt'
-template_file_path = '/home/shub/devel/personal/version-beta/images/blank_cert_template.jpg'
-output_directory_path = '/home/shub/devel/personal/version-beta/candidateficate_gen_script/output/output.png'
+input_txt_file = '/home/shub/devel/personal/version-beta/certificate_gen_script/requirements.txt'
+template_file_path = '/home/shub/devel/personal/version-beta/images/certificate_template.jpg'
+output_directory_path = '/home/shub/devel/personal/version-beta/certificate_gen_script/output/'
 
 
 
@@ -22,10 +22,18 @@ font_color = (51,51,51)
 # This variables determine the exact position where your text will overlay on the template
 
 # Y adjustment determines the px to position above the horizontal center of the template (may be positive or negative)
-coordinate_y_adjustment = 180
+coordinate_y_adjustment = 4
 
 # X adjustment determiens the px to position to the right of verticial center of the template (may be positive or negative)
 coordinate_x_adjustment = 7
+
+# w adjustment determiens the px to position to the right of verticial center of the template (may be positive or negative)
+coordinate_w_adjustment = 361
+
+# z adjustment determiens the px to position to the right of verticial center of the template (may be positive or negative) 
+coordinate_z_adjustment = 1064
+
+current_date = date.today
 
 # The Brains
 print('[Progress].....')
@@ -42,20 +50,32 @@ with open(input_txt_file) as input_list:
 
         font = cv2.FONT_HERSHEY_SIMPLEX
         text = candidate_name
-    
+
         textsize = cv2.getTextSize(text, font, font_size, 10)[0]
         text_x = (img.shape[1] - textsize[0]) / 2 + coordinate_x_adjustment
         text_y = (img.shape[0] + textsize[1]) / 2 - coordinate_y_adjustment
         text_x = int(text_x)
         text_y = int(text_y)
 		
-        cv2.putText(img, text, (text_x, text_y ), font, font_size, font_color, 10)
+        # text_w = (img.shape[1] - textsize[0]) / 2 + coordinate_w_adjustment
+        # text_z = (img.shape[0] + textsize[1]) / 2 - coordinate_z_adjustment
+        # text_w = int(text_w)
+        # text_z = int(text_z)
+
+
+        cv2.putText(img, text, (text_x, text_y), font, font_size, font_color, 10)
+        # cv2.putText(img, text, (text_w, text_z), font, font_size, font_color, 10)        
         candidate_path = output_directory_path + candidate_name + '.png'
         cv2.imwrite(candidate_path,img)
 
-cv2.destroyAllWindows()
+    cv2.destroyAllWindows()
+
+
+# for line in content:
+
 
 # Introduction to google-sheets API
+"""
 scope = ['https://spreadsheets.google.com/feeds',
          'https://www.googleapis.com/auth/drive']
 credentials = ServiceAccountCredentials.from_json_keyfile_name('/home/shub/devel/personal/version-beta/certificate_gen_script/macro-dogfish-238009-6417513b1b38.json', scope)
@@ -75,3 +95,4 @@ xlsx = pd.read_excel('', sheetname=0, index=0)
 '''make necessary changes in the dataframe'''
 with open('D:\\Users\\path\\blah_blah.txt','w') as outfile:
     pd.to_string(outfile)
+"""
