@@ -20,3 +20,15 @@ Well it saves time when you have to make tens of thousand certificates.
     $ time python script.py  
     0.71s user 0.90s system 277% cpu 0.581 total
 
+# Google Drive Upload
+
+Will ask for user permission to upload the output files to the users drive
+
+    `$ gdrive upload -r path/to/file`
+# Devel Plans
+
+1. Make an android app
+2. Complete / Prettify Website UI
+3. Make Algorithm faster
+4. Automate Manual work
+
