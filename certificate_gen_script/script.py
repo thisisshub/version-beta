@@ -67,12 +67,6 @@ with open(input_txt_file) as input_list:
         text_x = int(text_x)
         text_y = int(text_y)
 		
-        # text_w = (img.shape[1] - textsize[0]) / 2 + coordinate_w_adjustment
-        # text_z = (img.shape[0] + textsize[1]) / 2 - coordinate_z_adjustment
-        # text_w = int(text_w)
-        # text_z = int(text_z)
-
-
         cv2.putText(img, text, (text_x, text_y), font, font_size, font_color, 10)
         # cv2.putText(img, text, (text_w, text_z), font, font_size, font_color, 10)        
         candidate_path = output_directory_path + candidate_name + '.png'
@@ -101,3 +95,4 @@ xlsx = pd.read_excel('', sheetname=0, index=0)
 with open('','w') as outfile:
     pd.to_string(outfile)
 """
+# Google drive upload
