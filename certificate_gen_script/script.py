@@ -95,10 +95,9 @@ name_of_person = wks.col_values(4)
 gender = wks.col_values(5)
 certification = wks.col_values(6)
 
-
-import pandas as pd
+# conversion from xlsx to csv
 xlsx = pd.read_excel('', sheetname=0, index=0)
 '''make necessary changes in the dataframe'''
-with open('D:\\Users\\path\\blah_blah.txt','w') as outfile:
+with open('','w') as outfile:
     pd.to_string(outfile)
 """
