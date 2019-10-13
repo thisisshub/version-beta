@@ -7,7 +7,9 @@ import pandas as pd
 # Google Drive dependencies
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
-import os, sys, re
+from subprocess import call
+import os, sys, re, click
+
 
 # libraries to be imported 
 import smtplib 
@@ -95,4 +97,10 @@ xlsx = pd.read_excel('', sheetname=0, index=0)
 with open('','w') as outfile:
     pd.to_string(outfile)
 """
+
 # Google drive upload
+print ("[ Making a google drive upload of output folder ]")
+if click.confirm('Do you want to continue?', default=True):
+    os.system("gdrive upload -r /home/shub/devel/personal/version-beta/certificate_gen_script/output")
+else:
+    pass
