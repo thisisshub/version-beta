@@ -15,9 +15,7 @@ Well it saves time when you have to make tens of thousand certificates.
 
 # Benchmarks
 
- - Single Certificate Production takes
-
-## Single Certificate 
+**Single Certificate** 
 
     $ time python script.py  
     0.71s user 0.90s system 277% cpu 0.581 total
