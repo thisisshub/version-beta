@@ -57,6 +57,6 @@ Well it saves time when you have to make tens of thousand certificates.
     0.71s user 0.90s system 277% cpu 0.581 total
 ## Screenshots
 ![](https://picasaweb.google.com/100053153447527152292/6747175359962210417#6747175364497769314)
-![opencv text-recognition](https://picasaweb.google.com/100053153447527152292/6747175462966395121#6747175461016915570 )
+![](https://picasaweb.google.com/100053153447527152292/6747175462966395121#6747175461016915570 )
 ![](https://picasaweb.google.com/100053153447527152292/6747175735933862065#6747175741779520658)
 
