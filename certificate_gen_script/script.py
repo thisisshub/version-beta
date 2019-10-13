@@ -4,7 +4,19 @@ from oauth2client.service_account import ServiceAccountCredentials
 from datetime import date
 import pandas as pd
 
-#Modify the below variables according to your preference
+# Google Drive dependencies
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
+import os, sys, re
+
+# libraries to be imported 
+import smtplib 
+from email.mime.multipart import MIMEMultipart 
+from email.mime.text import MIMEText 
+from email.mime.base import MIMEBase 
+from email import encoders 
+
+# Modify the below variables according to your preference
 # Enter valid paths from your own file system
 # The input file contains names as a line seperated list
 # Make sure this output directory already exists or else candidateficates won't actually be generated
@@ -12,8 +24,6 @@ import pandas as pd
 input_txt_file = '/home/shub/devel/personal/version-beta/certificate_gen_script/requirements.txt'
 template_file_path = '/home/shub/devel/personal/version-beta/images/certificate_template.jpg'
 output_directory_path = '/home/shub/devel/personal/version-beta/certificate_gen_script/output/'
-
-
 
 font_size = 3.8
 font_color = (51,51,51)
@@ -69,10 +79,6 @@ with open(input_txt_file) as input_list:
         cv2.imwrite(candidate_path,img)
 
     cv2.destroyAllWindows()
-
-
-# for line in content:
-
 
 # Introduction to google-sheets API
 """
